@@ -12,21 +12,24 @@
 
         function redirectToPlatform() {
             const id = getQueryParam('id');
-<!--            let redirectUrl = "https://default.example.com"; // 기본 URL-->
+            let redirectUrl = "https://www.shipbaesong.co.kr/promotion/"; // 웹 이벤트 URL
+            let platform = ""
+            if (/android/i.test(navigator.userAgent)) {
+                redirectUrl = "https://android.example.com";
+                platform = "AOS"
+            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                redirectUrl = "https://ios.example.com";
+                platform = "IOS"
+            } else {
+                redirectUrl = "https://pc.example.com";
+                platform = "Web"
+            }
 
-<!--            if (/android/i.test(navigator.userAgent)) {-->
-<!--                redirectUrl = "https://android.example.com";-->
-<!--            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {-->
-<!--                redirectUrl = "https://ios.example.com";-->
-<!--            } else {-->
-<!--                redirectUrl = "https://pc.example.com";-->
-<!--            }-->
+            if (id) {
+                redirectUrl += `?id=${encodeURIComponent(id)}`;
+            }
 
-<!--            if (id) {-->
-<!--                redirectUrl += `?id=${encodeURIComponent(id)}`;-->
-<!--            }-->
-
-            document.getElementById("userAgent").textContent = navigator.userAgent;
+            document.getElementById("userAgent").textContent = platform;
 
 <!--            window.location.href = redirectUrl;-->
         }

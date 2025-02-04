@@ -12,22 +12,23 @@
 
         function redirectToPlatform() {
             const id = getQueryParam('id');
-            let redirectUrl = "https://www.shipbaesong.co.kr/promotion/"; // 기본 URL
+            let redirectUrl = "https://default.example.com"; // 기본 URL
 
             if (/android/i.test(navigator.userAgent)) {
-                redirectUrl = "deleo://shipbaesong/"; // 딥링크 개발해야함.
+                redirectUrl = "https://android.example.com";
+            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                redirectUrl = "https://ios.example.com";
+            } else {
+                redirectUrl = "https://pc.example.com";
             }
-<!--            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {-->
-<!--                redirectUrl = "https://ios.example.com";-->
-<!--            } else {-->
-<!--                redirectUrl = "https://pc.example.com";-->
-<!--            }-->
 
             if (id) {
                 redirectUrl += `?id=${encodeURIComponent(id)}`;
             }
 
-            window.location.href = redirectUrl;
+            document.getElementById("userAgent").textContent = navigator.userAgent;
+
+<!--     todo 화면 이동       window.location.href = redirectUrl;-->
         }
 
         window.onload = redirectToPlatform;
@@ -35,5 +36,7 @@
 </head>
 <body>
 <p>Redirecting...</p>
+<p>User Agent: <span id="userAgent"></span></p>
 </body>
 </html>
+<!--url https://megadeth10.github.io/HtmlBridge -->

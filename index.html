@@ -12,6 +12,7 @@
 
         function redirectToPlatform() {
             const id = getQueryParam('id');
+            const baseEventUrl = "https://allnew-dev.shipbaesong.com/support/event/" // 운영으로 변경해야함.
             let redirectUrl = ""; // 웹 이벤트 URL
             let platform = ""
             if (/android/i.test(navigator.userAgent)) {
@@ -21,12 +22,12 @@
                 platform = "AOS"
             } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 if (id) {
-                    redirectUrl = "https://www.shipbaesong.co.kr/promotion/${encodeURIComponent(id)}"
+                    redirectUrl = "${baseEventUrl}${encodeURIComponent(id)}"
                 }
                 platform = "IOS"
             } else {
                 if (id) {
-                    redirectUrl = "https://www.shipbaesong.co.kr/promotion/"
+                    redirectUrl = "${baseEventUrl}${encodeURIComponent(id)}"
                 }
                 platform = "Web"
             }

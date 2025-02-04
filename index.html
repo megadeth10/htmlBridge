@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Redirect</title>
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function redirectToPlatform() {
+            const id = getQueryParam('id');
+            let redirectUrl = "https://www.shipbaesong.co.kr/promotion/"; // 기본 URL
+
+            if (/android/i.test(navigator.userAgent)) {
+                redirectUrl = "deleo://shipbaesong/"; // 딥링크 개발해야함.
+            }
+<!--            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {-->
+<!--                redirectUrl = "https://ios.example.com";-->
+<!--            } else {-->
+<!--                redirectUrl = "https://pc.example.com";-->
+<!--            }-->
+
+            if (id) {
+                redirectUrl += `?id=${encodeURIComponent(id)}`;
+            }
+
+            window.location.href = redirectUrl;
+        }
+
+        window.onload = redirectToPlatform;
+    </script>
+</head>
+<body>
+<p>Redirecting...</p>
+</body>
+</html>

@@ -12,29 +12,32 @@
 
         function redirectToPlatform() {
             const id = getQueryParam('id');
-            let redirectUrl = "https://www.shipbaesong.co.kr/promotion/"; // 웹 이벤트 URL
+            let redirectUrl = ""; // 웹 이벤트 URL
             let platform = ""
             if (/android/i.test(navigator.userAgent)) {
-                redirectUrl = "https://android.example.com";
+                if (id) {
+                    redirectUrl = "deleo://shipbaesong/?p1=${encodeURIComponent(id)}";
+                }
                 platform = "AOS"
             } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                redirectUrl = "https://ios.example.com";
+                if (id) {
+                    redirectUrl = "https://www.shipbaesong.co.kr/promotion/${encodeURIComponent(id)}"
+                }
                 platform = "IOS"
             } else {
-                redirectUrl = "https://pc.example.com";
+                if (id) {
+                    redirectUrl = "https://www.shipbaesong.co.kr/promotion/"
+                }
                 platform = "Web"
-            }
-
-            if (id) {
-                redirectUrl += `?id=${encodeURIComponent(id)}`;
             }
 
             document.getElementById("userAgent").textContent = platform;
 
-<!--            window.location.href = redirectUrl;-->
+            window.location.href = redirectUrl;
         }
 
         window.onload = redirectToPlatform;
+
     </script>
 </head>
 <body>

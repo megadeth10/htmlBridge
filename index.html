@@ -40,20 +40,22 @@
                 platform = IOS;
             } else {
                 if (id) {
-                    redirectUrl = webEventUrl;
+                    redirectUrl = `deleo://shipbaesong/?p1=${encodeURIComponent(id)}`;// webEventUrl;
                 }
                 platform = WEB;
             }
-
+            console.log(`platform : ${platform}`);
             document.getElementById("userAgent").textContent = platform;
 
             if (redirectUrl) {
+                console.log(`redirect : ${redirectUrl}`);
                 window.location.href = redirectUrl;
                 if (platform == "AOS") {
                 // 일정 시간 후에도 앱이 실행되지 않으면 마켓으로 이동
                     setTimeout(function () {
                         if (new Date().getTime() - now < 1500) {
-                            window.location.href = webEventUrl;
+                            console.log("일반 로그");
+<!--                            window.location.href = webEventUrl;-->
                         }
                     }, 1000);
                 }

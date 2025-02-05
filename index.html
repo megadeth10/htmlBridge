@@ -12,29 +12,32 @@
 
         function redirectToPlatform() {
             const id = getQueryParam('id');
-            const baseEventUrl = "https://allnew-dev.shipbaesong.com/support/event/" // 운영으로 변경해야함.
+            const baseEventUrl = "https://allnew-dev.shipbaesong.com/support/event/"; // 운영으로 변경해야 함.
             let redirectUrl = ""; // 웹 이벤트 URL
-            let platform = ""
+            let platform = "";
+
             if (/android/i.test(navigator.userAgent)) {
                 if (id) {
-                    redirectUrl = "deleo://shipbaesong/?p1=${encodeURIComponent(id)}";
+                    redirectUrl = `deleo://shipbaesong/?p1=${encodeURIComponent(id)}`;
                 }
-                platform = "AOS"
+                platform = "AOS";
             } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 if (id) {
-                    redirectUrl = "${baseEventUrl}${encodeURIComponent(id)}"
+                    redirectUrl = `${baseEventUrl}${encodeURIComponent(id)}`;
                 }
-                platform = "IOS"
+                platform = "IOS";
             } else {
                 if (id) {
-                    redirectUrl = "${baseEventUrl}${encodeURIComponent(id)}"
+                    redirectUrl = `${baseEventUrl}${encodeURIComponent(id)}`;
                 }
-                platform = "Web"
+                platform = "Web";
             }
 
             document.getElementById("userAgent").textContent = platform;
 
-            window.location.href = redirectUrl;
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            }
         }
 
         window.onload = redirectToPlatform;

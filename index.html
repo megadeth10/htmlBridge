@@ -30,7 +30,7 @@
 
             if (/android/i.test(navigator.userAgent)) {
                 if (id) {
-                    redirectUrl = `deleo://shipbaesong/?p1=${encodeURIComponent(id)}`;
+                    redirectUrl = `deleo://shipbaesong/i?p1=${id}`;
                 }
                 platform = AOS;
             } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {

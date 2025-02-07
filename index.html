@@ -47,7 +47,7 @@
             }
         }
 
-        fun openDeepLink() {
+        function openDeepLink() {
             const id = getQueryParam('id');
             const webEventUrl = `${baseEventUrl}${encodeURIComponent(id)}`;
             const baseAppLink = `intent://shipbaesong/i?p1=${id}#Intent;scheme=deleo;package=com.deleo.shipbaesong;S.browser_fallback_url=${webEventUrl}`

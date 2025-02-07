@@ -53,12 +53,12 @@
                 if (platform == AOS) {
                     // 일정 시간 후에도 앱이 실행되지 않으면 웹 페이지로 이동
                     const now = new Date().getTime();
-                    setTimeout(function () {
-                        if (new Date().getTime() - now < 1500) {
-                            console.log("일반 로그");
-                            window.location.href = webEventUrl;
-                        }
-                    }, 1000);
+<!--                    setTimeout(function () {-->
+<!--                        if (new Date().getTime() - now < 1500) {-->
+<!--                            console.log("일반 로그");-->
+<!--                            window.location.href = webEventUrl;-->
+<!--                        }-->
+<!--                    }, 1000);-->
                 }
             }
         }

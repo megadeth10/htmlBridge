@@ -101,7 +101,7 @@
         function openWebLink() {
             const id = getQueryParam('id');
             const webEventUrl = `${baseEventUrl}${encodeURIComponent(id)}`;
-            window.location.href = redirectUrl;
+            window.location.href = webEventUrl;
         }
 
         window.onload = redirectToPlatform;
